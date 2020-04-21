@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat INE</title> 
+    <!-- This styling is for the Web Chat demonstration purposes. It is recommended that style is moved to separate file for organization in larger projects -->
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 16px;
+            font-family: Segoe UI;
+            line-height: 20px;
+            color: #FFFFFF;
+            display: table-cell;
+            padding: 13px 0px 0px 20px;
+        }
+
+        #heading {
+            background-color: #8140A1;
+            height: 50px;
+        }
+
+        .main {
+            margin: 18px;
+            border-radius: 4px;
+        }
+
+        div[role="form"]{
+            background-color: #F8F8F8;
+        }
+
+        #webchat {
+            position: fixed;
+            height: calc(100% - 60px);
+            width: 100%;
+            top: 50px;
+            overflow: hidden;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div>
+        <div id="heading">
+            <!-- Change the h1 text to change the bot name -->    
+            <h1> Asistencia en línea </h1>
+        </div>
+        <div id="webchat" role="main"></div>
+    </div>
+ 
+
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
+  <script>
+		
+		const styleSet = window.WebChat.createStyleSet({
+            //Bot
+			botAvatarImage: 'https://inemexico.sharepoint.com/sites/CMH/Documentos compartidos/Altas/avatar-bot.jpg',
+			botAvatarBackgroundColor: 'FFFFFF',
+			bubbleBackground: '#F8F8F8',
+			bubbleBorderColor: '#FFFFFF',
+			bubbleBorderRadius: '10',
+			
+			//Usuario
+			userAvatarInitials: 'Tú',
+			//userAvatarBackgroundColor: '#FFFFFF',
+            bubbleFromUserBackground: '#F8F8F8',
+			bubbleFromUserBorderColor: '#FFFFFF',
+			bubbleFromUserBorderRadius: '10',	
+			
+			//Características de la conversación
+			timestampColor: '#999999',
+			
+			// Sugerencias de acciones
+			suggestedBackground: '#FFFFFF',
+			suggestedActionTextColor: 'black',
+			suggestedActionBackground: '#EDE4f2',
+			suggestedActionBorder: '#EDE4f2',
+			suggestedActionBorderRadius: '20',
+			suggestedActionHeight: '50',
+			
+			//Botones de transcripción
+			transcriptOverlayButtonBackground: '#8140A1',	
+			hideUploadButton: true,		
+			
+			//Caja de mensaje
+			sendBoxBorderLeft: 'solid 3px #E6E6E6',
+			sendBoxBorderRight: 'solid 3px #E6E6E6',
+			sendBoxBorderTop: 'solid 3px #E6E6E6',
+			sendBoxBorderBottom: 'solid 3px #E6E6E6',
+			
+
+         });
+		 
+
+        // Add your BOT ID below 
+        var BOT_ID = "5b5b0090-02ea-4271-8de5-76b6790968da"; 
+        var theURL = "https://powerva.microsoft.com/api/botmanagement/v1/directline/directlinetoken?botId=" + BOT_ID;
+		//var input = document.getElementsByClassName("wc-shellinput")[0];
+		//input.placeholder = "e.g. How do I install Office";	
+      fetch(theURL)
+            .then(response => response.json())
+            .then(conversationInfo => {
+                window.WebChat.renderWebChat(
+                    {
+                        directLine: window.WebChat.createDirectLine({
+                            token: conversationInfo.token,
+                        }),
+						styleSet                        						
+                    },
+                    document.getElementById('webchat')					
+                );
+            })
+            .catch(err => console.error("Ha ocurrido un problema: " + err));
+
+    </script>
+  </body>
+</html>
