@@ -111,10 +111,22 @@
             .then(conversationInfo => {
                 window.WebChat.renderWebChat(
                     {
+			locale: 'es-ES',
+						
+			overrideLocalizedStrings: (strings, language) => ({
+				...strings,
+				TEXT_INPUT_PLACEHOLDER: 'Escriba su mensaje'
+			}),
+
+			overrideLocalizedStrings: {
+				TEXT_INPUT_PLACEHOLDER: 'Escribe Hola para iniciar la conversación'
+			},
+			    
                         directLine: window.WebChat.createDirectLine({
                             token: conversationInfo.token,
                         }),
-						styleSet                        						
+			    
+			styleSet                        						
                     },
                     document.getElementById('webchat')					
                 );
