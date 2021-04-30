@@ -13,15 +13,28 @@
 
         h1 {
             font-size: 16px;
-            font-family: Segoe UI;
+            font-family: 'Roboto', sans-serif;
             line-height: 20px;
             color: #FFFFFF;
             display: table-cell;
-            padding: 13px 0px 0px 20px;
+            padding: 13px 0px 0px 10px;
+        }
+
+        h1imagen {
+            display: table-cell;
+        }
+
+        img.centertext{
+            vertical-align: middle;
+            padding: 0px 0px 0px 10px;
+        }
+
+        button.webchat__suggested-action__button{
+            border-color: #b7006d;
         }
 
         #heading {
-            background-color: #8140A1;
+            background-color: #b7006d;
             height: 50px;
         }
 
@@ -31,7 +44,7 @@
         }
 
         div[role="form"]{
-            background-color: #F8F8F8;
+            background-color: #F8F8F8;      
         }
 
         #webchat {
@@ -48,9 +61,10 @@
 </head>
 <body>
     <div>
-        <div id="heading">
-            <!-- Change the h1 text to change the bot name-->    
-            <h1> Asistencia en l&iacute;nea </h1>
+        <div id="heading">            
+            <!-- Change the h1 text to change the bot name-->   
+            <h1imagen><img class="centertext" src="C:\Users\ambar.aguilar\Desktop\iconoChatEDPT.png"></h1imagen>
+            <h1>INEbot </h1>
         </div>
         <div id="webchat" role="main"></div>
     </div>
@@ -60,49 +74,52 @@
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	
   <script>
-		
-		const styleSet = window.WebChat.createStyleSet({
-            		//Bot
-			//botAvatarImage: 'https://inemexico.sharepoint.com/sites/CMH/Documentos compartidos/Altas/avatar-bot.jpg',
-			//botAvatarBackgroundColor: 'FFFFFF',
-			//bubbleBackground: '#F8F8F8',
-			bubbleBorderColor: '#FFFFFF',
+
+        const styleSet = window.WebChat.createStyleSet({    
+            
+            //Bot            
+            botAvatarImage: 'https://lh3.googleusercontent.com/proxy/ZK-bVzilarzyH3eS8fUQe1rlrr0d5lHTJXMnWwJxOF_zU99mDDW68ixgEMUy942CfQZHl7R6OuwbV6Vr6oKPgaRp6wBU1nki3kghEBaAmSapj8FsuTd2YQNEoTlHZI3rjRQkfJMmF1oxSZNXpi8q',
+			botAvatarInitials: 'Bot',
+            botAvatarBackgroundColor: '#b7006d',
+			bubbleBackground: '#fcecf4',
+			bubbleBorderColor: '#f9ddee',
 			bubbleBorderRadius: '5',
 			
 			//Usuario
-			//userAvatarInitials: 'Yo',
-			//userAvatarBackgroundColor: '#FFFFFF',
-            		//bubbleFromUserBackground: '#F8F8F8',
-			bubbleFromUserBorderColor: '#FFFFFF',
-			bubbleFromUserBorderRadius: '5',	
-			
-			//Características de la conversación
-			timestampColor: '#999999',
-			
-			// Sugerencias de acciones
-			suggestedBackground: '#FFFFFF',
-			suggestedActionTextColor: 'black',
-			suggestedActionBackground: '#EDE4f2',
-			suggestedActionBorder: 'solid 2px #EDE4f2',
+            userAvatarImage: 'https://lh3.googleusercontent.com/proxy/ZK-bVzilarzyH3eS8fUQe1rlrr0d5lHTJXMnWwJxOF_zU99mDDW68ixgEMUy942CfQZHl7R6OuwbV6Vr6oKPgaRp6wBU1nki3kghEBaAmSapj8FsuTd2YQNEoTlHZI3rjRQkfJMmF1oxSZNXpi8q',
+            userAvatarInitials: 'Yo',
+            userAvatarBackgroundColor: '#333333',
+            bubbleFromUserBackground: '#f1f1f2',
+			bubbleFromUserBorderColor: '#dddddd',
+			bubbleFromUserBorderRadius: '5',
+
+            // Sugerencias de acciones
+			suggestedActionBackground: '#FFFFFF',
+			suggestedActionTextColor: '#d70f87',
+			suggestedActionBorder: 'solid 2px #d70f87',
 			suggestedActionBorderRadius: '5',
 			suggestedActionHeight: '40',
 			
 			//Botones de transcripción
-			transcriptOverlayButtonBackground: '#8140A1',	
-			hideUploadButton: true,		
+			transcriptOverlayButtonBackground: '#666666',	
+			hideUploadButton: true,
+
+			//Características de la conversación
+			timestampColor: '#999999',
 			
 			//Caja de mensaje
 			sendBoxBorderLeft: 'solid 3px #E6E6E6',
 			sendBoxBorderRight: 'solid 3px #E6E6E6',
 			sendBoxBorderTop: 'solid 3px #E6E6E6',
 			sendBoxBorderBottom: 'solid 3px #E6E6E6',
-			locale: 'es-ES',
+			locale: 'es-ES'
 
          });
-		 
+
+         
 
         // Add your BOT ID below 
-        var BOT_ID = "5b5b0090-02ea-4271-8de5-76b6790968da"; 
+        var BOT_ID = "3476b92b-9919-473d-97fa-f6f84e1cbca5"; 
         var theURL = "https://powerva.microsoft.com/api/botmanagement/v1/directline/directlinetoken?botId=" + BOT_ID;
 
       fetch(theURL)
@@ -115,7 +132,7 @@
                         directLine: window.WebChat.createDirectLine({
                             token: conversationInfo.token,
                         }),
-			styleSet                        						
+                        styleSet                         						
                     },
                     document.getElementById('webchat')					
                 );
